@@ -1,6 +1,6 @@
 import { Pokemon } from "../models/Pokemon";
 import { FakeAPI } from "../repository/FakeAPi";
-import {API_HandlerInterface, Response} from "../repository/API_Handler"
+import {API_HandlerInterface, Response} from "../repository/API_HandlerInterface"
 
 // faz as requisoções para a API e formata os dados
 export class API_Handler implements API_HandlerInterface{
@@ -19,14 +19,11 @@ export class API_Handler implements API_HandlerInterface{
                 pokemon.type.push(res!.types[i].type.name)    
             }   
 
-            pokemon.hp = res?.stats[0].base_stat ?? 0
-            pokemon.attack = res?.stats[1].base_stat ?? 0
-            pokemon.defense = res?.stats[2].base_stat ?? 0
-            pokemon.sp_attack = res?.stats[3].base_stat ?? 0
-            pokemon.sp_defense = res?.stats[4].base_stat ?? 0
-            pokemon.speed = res?.stats[5].base_stat ?? 0
-            
-            pokemon.total = pokemon.hp + pokemon.attack + pokemon.defense + pokemon.sp_attack + pokemon.sp_defense + pokemon.speed
+            for(var i = 0; i < res!.stats.length; i++){
+                pokemon.stats.push(res!.stats[i].base_stat)    
+            }
+        
+            pokemon.total = pokemon.stats.reduce((a, b) => a + b, 0)    
 
             // for(var i = 0; i < res!.moves.length; i++){
             //     pokemon.moves.push(res!.moves[i].move.name)
@@ -86,7 +83,7 @@ export class API_Handler implements API_HandlerInterface{
               }
         }
     }
-    
+
     getMovesByPokemonId(id: number): { success: unknown; error: unknown; } {
         throw new Error("Method not implemented.");
     }

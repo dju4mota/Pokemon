@@ -1,5 +1,5 @@
 import { Pokemon } from "../models/Pokemon";
-import { API_HandlerInterface } from "../repository/API_Handler";
+import { API_HandlerInterface } from "../repository/API_HandlerInterface";
 
 // conversa com o index e o dbHandler
 // CRUD dos pokemons no time ?
@@ -18,7 +18,7 @@ class TeamBuilder {
             this.team.push(res.success as Pokemon)
         }
     }
-    
+
     getPokemonOnDById(pokemonId: number){
         return this.bd.getPokemonByPokemonId(pokemonId)
     }
