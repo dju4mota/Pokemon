@@ -1,5 +1,6 @@
 import exp from "constants"
 
+// constantes  para teste
 export const bulbasaur = {
   name: 'bulbasaur',
   id: 1,

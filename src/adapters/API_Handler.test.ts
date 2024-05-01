@@ -3,7 +3,7 @@ import { API_Handler } from './API_Handler'
 import { charmander,clefairy,bulbasaur, psyduck} from '../models/PokemonsConst'
 import { API_HandlerInterface } from '../repository/API_HandlerInterface'
 
-describe('Testing API Handler with mock', () => {
+describe('Testing API Handler with static clone of the API', () => {
   
   let apiHandler: API_HandlerInterface
   beforeEach(() => { 
@@ -12,7 +12,7 @@ describe('Testing API Handler with mock', () => {
 
   describe('GET Pokemon by ID', () => {
 
-    test('should get clefary, id 35', () => {
+    test('should get clefairy, id 35', () => {
       const poke = apiHandler.getPokemonByPokemonId(35)
       expect(poke).toEqual({ success: clefairy, error: null })
     })
