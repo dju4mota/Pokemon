@@ -16,10 +16,12 @@ export class TeamBuilder {
         const res = this.bd.getPokemonByPokemonId(pokemonId)
         if(res.success){
             this.team.push(res.success as Pokemon)
+            return true
         }
+        return false
     }
 
-    getPokemonOnDById(pokemonId: number){
+    getPokemonById(pokemonId: number){
         return this.bd.getPokemonByPokemonId(pokemonId)
     }
 
