@@ -7,6 +7,11 @@ export class API_Handler implements API_HandlerInterface{
     
     private api: FakeAPI = new FakeAPI()
 
+    getPokemonNameById(id: number): string {
+        const res = this.api.getPokemon(id)
+        return res?.name ?? ""
+    }
+
     getPokemonByPokemonId(id: number): { success: unknown; error: unknown; } {
         try{
             const res = this.api.getPokemon(id)

@@ -11,6 +11,14 @@ export class TeamBuilder {
         this.bd = bd
     }
 
+    getIdList(ini:number, fim:number){
+        let list = []
+        for(let i = ini; i <= fim; i++){
+            list.push(i.toString() + " - " + this.bd.getPokemonNameById(i))
+        }
+        return list
+    }
+
     // adiciona um pokemon ao time
     addPokemon(pokemonId: number){
         const res = this.bd.getPokemonByPokemonId(pokemonId)

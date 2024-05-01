@@ -7,6 +7,7 @@ export type Response = {
 
 export interface API_HandlerInterface {
 
+    getPokemonNameById(id: number): string
     getPokemonByPokemonId(id: number): Response
     getStatsByPokemonId(id: number): Response
     getTypeByPokemonId(id: number): Response
