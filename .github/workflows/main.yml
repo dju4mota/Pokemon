@@ -22,6 +22,10 @@ jobs:
 
             - name: Run unit tests
               run: npm run test:unit
+            - uses: actions/upload-artifact@v3
+              with:
+                name: Report
+                path: /home/runner/work/Pokemon/jest_html_reporters.html
 
     build:
       name: Build
