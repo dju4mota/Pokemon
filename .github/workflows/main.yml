@@ -25,7 +25,7 @@ jobs:
             - uses: actions/upload-artifact@v3
               with:
                 name: Report
-                path: /home/runner/work/Pokemon/jest_html_reporters.html
+                path: /home/runner/work/Pokemon/Pokemon/jest_html_reporters.html
 
     build:
       name: Build
