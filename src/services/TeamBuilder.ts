@@ -3,7 +3,7 @@ import { API_HandlerInterface } from "../repository/API_HandlerInterface";
 
 // conversa com o index e o dbHandler
 // CRUD dos pokemons no time ?
-class TeamBuilder {
+export class TeamBuilder {
     private bd: API_HandlerInterface
     private team: Pokemon[] = []
     
@@ -47,18 +47,19 @@ class TeamBuilder {
         return this.team.sort((a, b) => b.total - a.total)
     }
 
-    // retorna o time ordenado por tipo
-    getTeamByType(type: string){
-        return this.team.filter(pokemon => pokemon.type.includes(type))
-    }
-
     // retorna Pokemon com maior stat
     getStrongestPokemon(){
+        if(this.team.length === 0){
+            return null
+        }
         return this.team.reduce((prev, current) => (prev.total > current.total) ? prev : current)
     }
 
     // retorna Pokemon com menor stat
     getWeakestPokemon(){
+        if(this.team.length === 0){
+            return null
+        }
         return this.team.reduce((prev, current) => (prev.total < current.total) ? prev : current)
     }
 

@@ -1,64 +1,70 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_Handler } from './API_Handler'
+import { clefairy, charmander } from '../models/PokemonsConst'
+import { API_HandlerInterface } from '../repository/API_HandlerInterface'
 
 describe('Testing API Handler with mock', () => {
   
+  let apiHandler: API_HandlerInterface
+  beforeEach(() => { 
+     apiHandler = new API_Handler()
+  })
+
   describe('GET Pokemon by ID', () => {
 
     test('should get clefary, id 35', () => {
-      const apiHandler = new API_Handler()
       const poke = apiHandler.getPokemonByPokemonId(35)
-      
       expect(poke).toEqual({ success: clefairy, error: null })
     })
 
     test('should get charmander, id 4', () => {
-      const apiHandler = new API_Handler()
       const poke = apiHandler.getPokemonByPokemonId(4)
-      
       expect(poke).toEqual({ success: charmander, error: null })
     })
 
-
+    test('should return error when trying to get pokemon with id 0', () => {
+      const poke = apiHandler.getPokemonByPokemonId(0)
+      expect(poke).toEqual({ success: null, error: 'Cannot get pokemon with id: 0 from PokeAPI' })
+    })
   })
 
   describe('GET Stats by ID', () => {
 
     test('should get stats from clefairy, id 35', () => {
-      const apiHandler = new API_Handler()
       const stats = apiHandler.getStatsByPokemonId(35)
-      
       expect(stats).toEqual({ success: [70, 45, 48, 60, 65, 35, 323], error: null })
     })
 
     test('should get stats from charmander, id 4', () => {
-      const apiHandler = new API_Handler()
       const stats = apiHandler.getStatsByPokemonId(4)
-      
       expect(stats).toEqual({ success: [39, 52, 43, 60, 50, 65, 309], error: null })
     })
 
+    test('should return error when trying to get stats from pokemon with id 0', () => {
+      const stats = apiHandler.getStatsByPokemonId(0)
+      expect(stats).toEqual({ success: null, error: 'Cannot get stats from pokemon with id: 0 from PokeAPI' })
+    })
+  })
+
+  describe('GET Type by ID', () => {
+      
+      test('should get type from clefairy, id 35', () => {
+        const type = apiHandler.getTypeByPokemonId(35)
+        expect(type).toEqual({ success: ['fairy'], error: null })
+      })
+  
+      test('should get type from charmander, id 4', () => {
+        const type = apiHandler.getTypeByPokemonId(4)
+        expect(type).toEqual({ success: ['fire'], error: null })
+      })
+  
+      test('should return error when trying to get type from pokemon with id 0', () => {
+        const type = apiHandler.getTypeByPokemonId(0)
+        expect(type).toEqual({ success: null, error: 'Cannot get types from pokemon with id: 0 from PokeAPI' })
+      
   })
 
 })
 
+})
 
-const clefairy = {
-  name: 'clefairy',
-  id: 35,
-  pokedex: 35,
-  type: ['fairy'],
-  stats: [70, 45, 48, 60, 65, 35],
-  total: 323,
-  moves: []
-}
-
-const charmander = {
-  name: 'charmander',
-  id: 4,
-  pokedex: 4,
-  type: ['fire'],
-  stats: [39, 52, 43, 60, 50, 65],
-  total: 309,
-  moves: []
-}

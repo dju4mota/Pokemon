@@ -37,7 +37,7 @@ export class API_Handler implements API_HandlerInterface{
         } catch (error){
             return {
                 success: null,
-                error: 'Cannot create task'
+                error: 'Cannot get pokemon with id: ' + id + ' from PokeAPI'
               }
         }
     }
@@ -59,7 +59,7 @@ export class API_Handler implements API_HandlerInterface{
         } catch (error){
             return {
                 success: null,
-                error: 'Cannot get stats'
+                error: 'Cannot get stats from pokemon with id: ' + id + ' from PokeAPI'
               }
         }
     }
@@ -79,7 +79,7 @@ export class API_Handler implements API_HandlerInterface{
         } catch (error){
             return {
                 success: null,
-                error: 'Cannot get types'
+                error: 'Cannot get types from pokemon with id: ' + id + ' from PokeAPI' 
               }
         }
     }

@@ -3,6 +3,6 @@ import {API_Handler} from "./adapters/API_Handler"
 
 const tb = new API_Handler()
 
-console.log(tb.getPokemonByPokemonId(35))
+console.log(tb.getPokemonByPokemonId(0))
 console.log(tb.getStatsByPokemonId(35))
 console.log(tb.getTypeByPokemonId(35))
