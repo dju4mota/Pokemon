@@ -11,10 +11,12 @@ export class TeamBuilder {
         this.bd = bd
     }
 
-    getIdList(ini:number, fim:number){
-        let list = []
+    async getIdList(ini:number, fim:number){
+        let list:string[] = []
         for(let i = ini; i <= fim; i++){
-            list.push(i.toString() + " - " + this.bd.getPokemonNameById(i))
+            await this.bd.getPokemonNameById(i)
+            .then((res) => list.push(i.toString() + " - " + res))
+            
         }
         return list
     }

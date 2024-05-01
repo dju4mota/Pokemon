@@ -1,16 +1,25 @@
 import { Pokemon } from "../models/Pokemon";
 import { FakeAPI } from "../repository/FakeAPi";
 import {API_HandlerInterface, Response} from "../repository/API_HandlerInterface"
+import axios from "axios";
 
 // faz as requisoções para a API e formata os dados
 export class API_Handler implements API_HandlerInterface{
     
     private api: FakeAPI = new FakeAPI()
 
-    getPokemonNameById(id: number): string {
-        const res = this.api.getPokemon(id)
-        return res?.name ?? ""
-    }
+    async getPokemonNameById(id: number): Promise<string>{
+        let response:string     
+        try {
+            response = await axios.get('https://pokeapi.co/api/v2/pokemon/' + id)
+            .then((res) => { return res.data.name })
+            .catch((error) => console.error(error));     
+        } catch (error) {
+            console.error(error);
+            return "";
+        }
+        return response
+        }
 
     getPokemonByPokemonId(id: number): { success: unknown; error: unknown; } {
         try{
