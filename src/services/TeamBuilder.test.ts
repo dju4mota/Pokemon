@@ -2,7 +2,7 @@
 
 import { API_Handler_Mock } from "../adapters/API_Handler_Mock"
 import { TeamBuilder } from "./TeamBuilder"
-import { clefairy, charmander } from "../models/PokemonsConst"
+import { clefairy, charmander, bulbasaur,jigglypuff,pikachu,meowth } from "../models/PokemonsConst"
 import { API_HandlerInterface } from "../repository/API_HandlerInterface"
 
 
@@ -29,7 +29,27 @@ describe('Testing TeamBuilder with Mock', () => {
 
             expect(tb.getTeam()).toEqual([charmander])
         })
+        test('should add bulbasaur (1) to the team', () => {
+            tb.addPokemon(1)
+            expect(tb.getTeam()).toEqual([bulbasaur])
+        })
 
+        test('should add jigglypuff (39) to the team', () => {
+            tb.addPokemon(39)
+            expect(tb.getTeam()).toEqual([jigglypuff])
+        })
+        test('should add pikachu (25) to the team', () => {
+            tb.addPokemon(25)
+            expect(tb.getTeam()).toEqual([pikachu])
+        })
+        test('should add meowth (52) to the team', () => {
+            tb.addPokemon(52)
+            expect(tb.getTeam()).toEqual([meowth])
+        })
+        test('should not add pokemon with id 0 to the team', () => {
+            tb.addPokemon(0)
+            expect(tb.getTeam()).toEqual([])
+        })
         test('should not add pokemon with id 0 to the team', () => {
             tb.addPokemon(0)
 
@@ -51,10 +71,15 @@ describe('Testing TeamBuilder with Mock', () => {
 
             expect(tb.getTeam()).toEqual([])
         })
+        test('should remove bulbasaur (1) from the team', () => {
+            tb.addPokemon(1)
+            tb.removePokemon(1)
+
+            expect(tb.getTeam()).toEqual([])
+        })
 
         test('should not remove pokemon with id 0 from the team', () => {
             tb.removePokemon(0)
-
             expect(tb.getTeam()).toEqual([])
         })
     })
@@ -73,8 +98,19 @@ describe('Testing TeamBuilder with Mock', () => {
             tb.addPokemon(35)
             tb.addPokemon(4)
             expect(tb.getTotalStats()).toBe(632)
-        
         })
+        test('should return 318 for bulbasaur (1)', () => {
+            tb.addPokemon(1)
+            expect(tb.getTotalStats()).toBe(318)
+        })
+
+        test('should return 950 for clefairy, charmandar, bulbassaur ', () => {
+            tb.addPokemon(35)
+            tb.addPokemon(4)
+            tb.addPokemon(1)
+            expect(tb.getTotalStats()).toBe(950)
+        })
+
 
         test('should return 0 for empty team', () => {
             expect(tb.getTotalStats()).toBe(0)
