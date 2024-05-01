@@ -6,7 +6,13 @@ const config: Config = {
     '.+\\.ts$': 'ts-jest'
   },
   verbose:true,
-  reporters: [['github-actions', {silent: false}], 'summary'],
+  reporters:  [
+    'default',
+    ['jest-html-reporters', {
+      pageTitle: 'Relatório de Testes',
+      outputPath: 'relatorio_de_testes.html',
+    }],
+  ],
 
 }
 
