@@ -4,6 +4,10 @@ import {API_HandlerInterface, Response} from "../repository/API_HandlerInterface
 
 // Mock class for API_Handler
 export class API_Handler_Mock implements API_HandlerInterface{
+    
+    getPokemonNameById(id: number): Promise<string> {
+        throw new Error("Method not implemented.");
+    }
 
     getPokemonByPokemonId(id: number): Response {
         switch(id){
