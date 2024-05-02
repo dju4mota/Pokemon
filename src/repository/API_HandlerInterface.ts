@@ -8,9 +8,9 @@ export type Response = {
 export interface API_HandlerInterface {
 
     getPokemonNameById(id: number): Promise<string>
-    getPokemonByPokemonId(id: number): Response
-    getStatsByPokemonId(id: number): Response
-    getTypeByPokemonId(id: number): Response
+    getPokemonByPokemonId(id: number):Promise<Response>
+    getStatsByPokemonId(id: number): Promise<Response>
+    getTypeByPokemonId(id: number):  Promise<Response>
     getMovesByPokemonId(id: number): Response
     getMoveByMoveId(id: number): Response
     

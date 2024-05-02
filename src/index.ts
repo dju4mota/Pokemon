@@ -24,8 +24,8 @@ async function menu() {
   rl.question('Escolha uma opção: \n 1. Adicionar um pokemon ao time \n 2. Ver um pokemon por ID \n 3. Ver um pokemon por ID do time \n 4. remover um pokemon por ID do time \n 5. ver o time \n 6. ver os stats total do time \n 7. ver o time ordenado \n 8. ver o pokemon mais forte \n 9. ver o pokemon mais fraco \n 10. Lista de Ids. \n 11. Sair \n', async (answer) => {
     switch(answer) {
       case '1':
-        rl.question('Digite o id do pokemon: \n', (id) => { 
-            if(tb.addPokemon(parseInt(id))){
+        rl.question('Digite o id do pokemon: \n', async (id) => { 
+            if( await tb.addPokemon(parseInt(id))){
                 console.log("Pokemon adicionado com sucesso!")
                 console.log("Seu time atual: ");
                 console.log(tb.getTeam());

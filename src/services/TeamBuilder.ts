@@ -22,13 +22,11 @@ export class TeamBuilder {
     }
 
     // adiciona um pokemon ao time
-    addPokemon(pokemonId: number){
-        const res = this.bd.getPokemonByPokemonId(pokemonId)
-        if(res.success){
-            this.team.push(res.success as Pokemon)
-            return true
-        }
-        return false
+    async addPokemon(pokemonId: number){
+        const res = await this.bd.getPokemonByPokemonId(pokemonId)
+        .then((res) => { this.team.push(res.success as Pokemon); return true})
+        .catch((error) => {console.log(error); return false})
+        return res
     }
 
     getPokemonById(pokemonId: number){
@@ -44,6 +42,15 @@ export class TeamBuilder {
     getTeam(){
         return this.team
     }
+
+    getTypesFromTeam(){
+        let types:string[] = []
+        this.team.forEach(pokemon => {
+            types = types.concat(pokemon.type)
+        })
+        return types
+    }
+
 
     // retorna o total de stats do time
     getTotalStats(){
